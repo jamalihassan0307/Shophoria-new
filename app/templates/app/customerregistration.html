@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-5">
+  <div class="col-sm-6 offset-sm-3">
+   <div class="card shadow-lg">
+    <div class="card-body p-5">
+     <div class="text-center mb-4">
+      <h3 class="fw-bold text-primary">Create Account</h3>
+      <p class="text-muted">Join Shophoria for the best shopping experience</p>
+     </div>
+
+     <form action="" method="post" novalidate>
+      {% if messages %}
+         {% for message in messages %}
+         <div class="alert alert-{{message.tags}} mb-4">{{message}}</div>
+         {% endfor %}
+      {% endif %}
+      {% csrf_token %}
+      {% for fm in form %}
+      <div class="form-group mb-3">
+       {{fm.label_tag}} 
+       {{fm}} 
+       <small class="text-danger">{{fm.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Create Account</button>
+      <div class="text-center">
+       <p class="text-muted mb-0">Already have an account?</p>
+       <a href="{% url 'login' %}" class="text-decoration-none text-primary fw-bold">Sign In</a>
+      </div>
+      {% if form.non_field_errors %}
+         {% for error in form.non_field_errors %}
+         <div class="alert alert-danger mt-3">{{error}}</div>
+         {% endfor %}
+      {% endif %}
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

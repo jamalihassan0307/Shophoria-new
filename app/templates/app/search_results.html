@@ -1,0 +1,72 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Search
+Results{% endblock title %} {% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h2 class="mb-0">
+            <i class="fas fa-search text-primary me-2"></i>Search Results for: 
+            <span class="text-primary">{{ query }}</span>
+          </h2>
+        </div>
+      </div>
+      {% if products %}
+      <div class="row">
+        {% for product in products %}
+        <div class="col-sm-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <a href="{% url 'product-detail' product.id %}" class="text-decoration-none">
+              <img src="{{product.product_image.url}}" class="card-img-top p-3" alt="{{ product.title }}" style="height: 300px; object-fit: contain" />
+              <div class="card-body">
+                <h5 class="card-title text-dark">{{ product.title }}</h5>
+                <p class="card-text text-muted">
+                  <i class="fas fa-tag me-2"></i>{{ product.brand }}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="text-decoration-line-through text-muted">
+                      Rs. {{ product.selling_price }}
+                    </span>
+                    <span class="badge bg-danger ms-2">
+                      {{ product.get_discount_percentage }}% OFF
+                    </span>
+                  </div>
+                  <h5 class="text-success mb-0">
+                    Rs. {{ product.discounted_price }}
+                  </h5>
+                </div>
+              </div>
+            </a>
+            <div class="card-footer bg-white border-0">
+              <div class="d-grid">
+                <a href="{% url 'product-detail' product.id %}" class="btn btn-primary">
+                  <i class="fas fa-shopping-cart me-2"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="card shadow-sm">
+        <div class="card-body text-center py-5">
+          <i class="fas fa-search fa-3x text-muted mb-3"></i>
+          <h4 class="mb-3">No Products Found</h4>
+          <p class="text-muted mb-4">We couldn't find any products matching your search.</p>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'home' %}" class="btn btn-primary">
+              <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+            <a href="{% url 'mobile' %}" class="btn btn-outline-primary">
+              <i class="fas fa-mobile-alt me-2"></i>Browse Mobiles
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

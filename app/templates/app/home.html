@@ -1,0 +1,235 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Home {% endblock title %} {% block banner_slider %}
+<!-- Banner section removed -->
+{% endblock banner_slider %} {% block livesale %}
+<!-- Live Sale Section -->
+<div class="container-fluid px-0">
+  <div class="row g-0">
+    <div class="col-12">
+      <div class="bg-danger text-white py-4 shadow-sm">
+        <div class="container">
+          <div class="text-center">
+            <h1 class="display-4 fw-bold mb-3">SALE IS LIVE NOW</h1>
+            <h4 class="mb-3">
+              5% Instant Discount on HBL Credit and Debit Card
+            </h4>
+            <p class="text-light mb-0">
+              Term and Condition Applied (For details visit Bank's official
+              Website)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Live Sale Section -->
+{% endblock livesale %} {% block main-content %}
+
+<!-- 1st Product Slider -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4 position-relative pb-2">
+        Shophoria Bottom Wears
+        <span
+          class="position-absolute bottom-0 start-0"
+          style="width: 60px; height: 2px; background-color: #dc3545"
+        ></span>
+      </h2>
+      <!-- Slider 1 -->
+      <div class="owl-carousel" id="slider1">
+        {% for b in bottomwears %}
+        <div class="item px-2">
+          <div class="card border-0 shadow-sm h-100">
+            <div
+              class="text-center p-3 rounded-3"
+              style="height: 250px; background: #f8f9fa"
+            >
+              <img
+                src="{{b.product_image.url}}"
+                alt="{{b.title}}"
+                class="img-fluid h-100 rounded-3"
+                style="object-fit: contain"
+              />
+            </div>
+            <div class="card-body text-center p-4">
+              <h5 class="card-title text-truncate mb-2">{{b.title}}</h5>
+              <div class="mb-3">
+                <p class="text-danger mb-0 fw-bold">
+                  Rs. {{b.discounted_price}}
+                </p>
+                <small class="text-decoration-line-through text-muted"
+                  >Rs. {{b.selling_price}}</small
+                >
+              </div>
+              <a
+                href="{% url 'product-detail' b.id %}"
+                class="btn btn-outline-primary w-100"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End 1st Product Slider -->
+
+<!-- 2nd Product Slider -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4 position-relative pb-2">
+        Shophoria Top Wears
+        <span
+          class="position-absolute bottom-0 start-0"
+          style="width: 60px; height: 2px; background-color: #dc3545"
+        ></span>
+      </h2>
+      <!-- Slider 2 -->
+      <div class="owl-carousel" id="slider2">
+        {% for tp in topwears %}
+        <div class="item px-2">
+          <div class="card border-0 shadow-sm h-100">
+            <div
+              class="text-center p-3 rounded-3"
+              style="height: 250px; background: #f8f9fa"
+            >
+              <img
+                src="{{tp.product_image.url}}"
+                alt="{{tp.title}}"
+                class="img-fluid h-100 rounded-3"
+                style="object-fit: contain"
+              />
+            </div>
+            <div class="card-body text-center p-4">
+              <h5 class="card-title text-truncate mb-2">{{tp.title}}</h5>
+              <div class="mb-3">
+                <p class="text-danger mb-0 fw-bold">
+                  Rs. {{tp.discounted_price}}
+                </p>
+                <small class="text-decoration-line-through text-muted"
+                  >Rs. {{tp.selling_price}}</small
+                >
+              </div>
+              <a
+                href="{% url 'product-detail' tp.id %}"
+                class="btn btn-outline-primary w-100"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End 2nd Product Slider -->
+
+<!-- 3rd Product Slider -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4 position-relative pb-2">
+        Shophoria Mobiles
+        <span
+          class="position-absolute bottom-0 start-0"
+          style="width: 60px; height: 2px; background-color: #dc3545"
+        ></span>
+      </h2>
+      <!-- Slider 3 -->
+      <div class="owl-carousel" id="slider3">
+        {% for m in mobiles %}
+        <div class="item px-2">
+          <div class="card border-0 shadow-sm h-100">
+            <div
+              class="text-center p-3 rounded-3"
+              style="height: 250px; background: #f8f9fa"
+            >
+              <img
+                src="{{m.product_image.url}}"
+                alt="{{m.title}}"
+                class="img-fluid h-100 rounded-3"
+                style="object-fit: contain"
+              />
+            </div>
+            <div class="card-body text-center p-4">
+              <h5 class="card-title text-truncate mb-2">{{m.title}}</h5>
+              <div class="mb-3">
+                <p class="text-danger mb-0 fw-bold">
+                  Rs. {{m.discounted_price}}
+                </p>
+                <small class="text-decoration-line-through text-muted"
+                  >Rs. {{m.selling_price}}</small
+                >
+              </div>
+              <a
+                href="{% url 'product-detail' m.id %}"
+                class="btn btn-outline-primary w-100"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End 3rd Product Slider -->
+
+<!-- 4th Product Slider -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4 position-relative pb-2">
+        Shophoria Laptops
+        <span
+          class="position-absolute bottom-0 start-0"
+          style="width: 60px; height: 2px; background-color: #dc3545"
+        ></span>
+      </h2>
+      <!-- Slider 4 -->
+      <div class="owl-carousel" id="slider4">
+        {% for l in laptops %}
+        <div class="item px-2">
+          <div class="card border-0 shadow-sm h-100">
+            <div
+              class="text-center p-3 rounded-3"
+              style="height: 250px; background: #f8f9fa"
+            >
+              <img
+                src="{{l.product_image.url}}"
+                alt="{{l.title}}"
+                class="img-fluid h-100 rounded-3"
+                style="object-fit: contain"
+              />
+            </div>
+            <div class="card-body text-center p-4">
+              <h5 class="card-title text-truncate mb-2">{{l.title}}</h5>
+              <div class="mb-3">
+                <p class="text-danger mb-0 fw-bold">
+                  Rs. {{l.discounted_price}}
+                </p>
+                <small class="text-decoration-line-through text-muted"
+                  >Rs. {{l.selling_price}}</small
+                >
+              </div>
+              <a
+                href="{% url 'product-detail' l.id %}"
+                class="btn btn-outline-primary w-100"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End 4th Product Slider -->
+{% endblock main-content %}

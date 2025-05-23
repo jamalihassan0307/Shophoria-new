@@ -1,0 +1,95 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Product
+Detail{% endblock title %} {% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-6 text-center align-self-center">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <img
+            src="{{product.product_image.url}}"
+            alt="{{product.title}}"
+            class="img-fluid"
+            style="max-height: 400px; object-fit: contain"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5 offset-sm-1">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="fw-bold mb-3">{{product.title}}</h2>
+          <div class="mb-4">
+            <span class="badge bg-primary">{{product.brand}}</span>
+            <span class="badge bg-success">{{product.category}}</span>
+          </div>
+          <p class="text-muted mb-4">{{product.description}}</p>
+          <div class="d-flex align-items-center mb-4">
+            <h3 class="text-primary mb-0">Rs.{{product.discounted_price}}</h3>
+            <small class="text-decoration-line-through text-muted ms-2"
+              >Rs.{{product.selling_price}}</small
+            >
+            <span class="badge bg-danger ms-2">Save Rs.{{product.saving}}</span>
+          </div>
+
+          <div class="d-flex gap-3 mb-4">
+            {% if request.user.is_authenticated %} {% if item_already_in_cart %}
+            <a href="{% url 'showcart' %}" class="btn btn-warning flex-grow-1">
+              <i class="fas fa-shopping-cart me-2"></i>Go to Cart
+            </a>
+            {% else %}
+            <form action="{% url 'add-to-cart' %}" class="d-inline flex-grow-1">
+              <input type="hidden" name="product_id" value="{{product.id}}" />
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+              </button>
+            </form>
+            {% endif %} {% else %}
+            <form action="{% url 'add-to-cart' %}" class="d-inline flex-grow-1">
+              <input type="hidden" name="product_id" value="{{product.id}}" />
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+              </button>
+            </form>
+            {% endif %}
+            <form action="{% url 'add-to-cart' %}" class="d-inline flex-grow-1">
+              <input type="hidden" name="product_id" value="{{product.id}}" />
+              <input type="hidden" name="redirect_to" value="checkout" />
+              <button type="submit" class="btn btn-danger w-100">
+                <i class="fas fa-bolt me-2"></i>Buy Now
+              </button>
+            </form>
+          </div>
+
+          <div class="card bg-light">
+            <div class="card-body">
+              <h5 class="card-title mb-3">
+                <i class="fas fa-tag text-primary me-2"></i>Available Offers
+              </h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Special Price Get extra RS.3000 off (price inclusive of
+                  discount)
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  No cost RS.1,667/month. Standard also available
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Partner Offer RS.2000 Flipkart Gift Card on Every 1000th
+                  Transaction
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

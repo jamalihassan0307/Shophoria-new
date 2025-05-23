@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Top Wear{% endblock title %} {% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="list-group">
+        <a
+          href="{% url 'topwear' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >All Top Wear</a
+        >
+        <a
+          href="{% url 'topweardata' 'breakout' %}"
+          class="list-group-item list-group-item-action"
+          >breakout</a
+        >
+        <a
+          href="{% url 'topweardata' 'outfitters' %}"
+          class="list-group-item list-group-item-action"
+          >outfitters</a
+        >
+         <a
+          href="{% url 'topweardata' 'brucci' %}"
+          class="list-group-item list-group-item-action"
+          >brucci</a
+        >
+        <a
+          href="{% url 'topweardata' 'below' %}"
+          class="list-group-item list-group-item-action"
+          >Below RS.300</a
+        >
+        <a
+          href="{% url 'topweardata' 'above' %}"
+          class="list-group-item list-group-item-action"
+          >Above RS.300</a
+        >
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="row">
+        {% for tw in topwears %}
+        <div class="col-sm-4 text-center mb-4">
+          <a href="{% url 'product-detail' tw.id %}" class="btn">
+            <div class="item">
+              <img src="{{tw.product_image.url}}" alt="" height="200px" />
+              <span class="fw-bold">{{tw.title}}</span>
+              <br />
+              <span class="fs-5">₹{{tw.discounted_price}}</span>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,134 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Address{%endblock title %} {% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <i class="fas fa-user-circle fa-3x text-primary"></i>
+            <h5 class="mt-2 mb-0">{{request.user|capfirst}}</h5>
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="{% url 'profile' %}" class="nav-link">
+                <i class="fas fa-user me-2"></i>Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'address' %}" class="nav-link {{active}}">
+                <i class="fas fa-map-marker-alt me-2"></i>Address
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 offset-sm-1">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">
+          <i class="fas fa-map-marked-alt text-primary me-2"></i>Your Addresses
+        </h4>
+        <a href="{% url 'add_address' %}" class="btn btn-primary">
+          <i class="fas fa-plus me-2"></i>Add New Address
+        </a>
+      </div>
+      <div class="row">
+        {% for ad in addr %}
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <h5 class="card-title mb-0">
+                  <i class="fas fa-map-marker-alt text-primary me-2"></i>Address
+                  {{forloop.counter}}
+                </h5>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-link text-muted p-0"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'update_address' ad.id %}"
+                      >
+                        <i class="fas fa-edit me-2"></i>Edit
+                      </a>
+                    </li>
+                    <li>
+                      <form
+                        action="{% url 'delete_address' ad.id %}"
+                        method="post"
+                        class="d-inline"
+                      >
+                        {% csrf_token %}
+                        <button
+                          type="submit"
+                          class="dropdown-item text-danger"
+                          onclick="return confirm('Are you sure you want to delete this address?')"
+                        >
+                          <i class="fas fa-trash me-2"></i>Delete
+                        </button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="address-details">
+                <p class="mb-2"><strong>Name:</strong> {{ad.name}}</p>
+                <p class="mb-2"><strong>Address:</strong> {{ad.locality}}</p>
+                <p class="mb-2"><strong>City:</strong> {{ad.city}}</p>
+                <p class="mb-2"><strong>State:</strong> {{ad.state}}</p>
+                <p class="mb-0"><strong>ZipCode:</strong> {{ad.zipcode}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+          <div class="card shadow-sm">
+            <div class="card-body text-center py-5">
+              <i class="fas fa-map-marker-alt fa-3x text-muted mb-3"></i>
+              <h5 class="mb-3">No Addresses Found</h5>
+              <p class="text-muted mb-4">
+                You haven't added any addresses yet.
+              </p>
+              <a href="{% url 'add_address' %}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Add Your First Address
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% if messages %}
+      <div class="mt-4">
+        {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible fade show"
+          role="alert"
+        >
+          <i
+            class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %} me-2"
+          ></i>
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

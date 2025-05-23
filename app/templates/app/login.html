@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Login{% endblock title %} {% block main-content %}
+<div class="container">
+  <div class="row my-5">
+    <div class="col-sm-6 offset-sm-3">
+      <div class="card shadow-lg">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h3 class="fw-bold text-primary">Welcome Back</h3>
+            <p class="text-muted">Sign in to continue shopping</p>
+          </div>
+          <form action="" method="post" novalidate>
+            {% csrf_token %} 
+            {% for fm in form %}
+            <div class="form-group mb-3">
+              {{fm.label_tag}} 
+              {{fm}}
+              <small class="text-danger">{{fm.errors|striptags}}</small>
+            </div>
+            {% endfor %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <a href="{% url 'password_reset' %}" class="text-decoration-none text-primary">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Sign In</button>
+            <div class="text-center">
+              <p class="text-muted mb-0">Don't have an account?</p>
+              <a href="{% url 'customerregistration' %}" class="text-decoration-none text-primary fw-bold">Create an Account</a>
+            </div>
+            {% if form.non_field_errors %} 
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger mt-3">{{error}}</div>
+              {% endfor %} 
+            {% endif %}
+          </form>
+          <div class="card">
+            <div class="row">
+                <div class="col-md-8 mx-auto social-container my-2">
+                    <button class="google-btn">
+                        <a href="{% url 'social:begin' 'google-oauth2' %}">
+                            Login With Google
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
