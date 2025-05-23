@@ -26,12 +26,7 @@ SECRET_KEY = 'django-insecure-8z(3$p7!i_i*#f6946x0)*l=xs4kx36+ajs74i@a0%73ao$f&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'shophoria128.pythonanywhere.com',
-    'www.shophoria128.pythonanywhere.com',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['shophoria128.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Security settings
 if DEBUG:
