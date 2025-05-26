@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'app.middleware.ProfileCompletionMiddleware',
 ]
 
 ROOT_URLCONF = 'shoppinglyW.urls'
@@ -198,4 +199,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
+    
+    'app.social_auth_pipeline.save_google_user_details',
 )
