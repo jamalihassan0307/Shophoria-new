@@ -94,12 +94,12 @@
                   <p class="mb-2"><strong>Order ID:</strong> {{op.id}}</p>
 
                 </div>
-                <div class="col-md-6">
+                {% comment %} <div class="col-md-6">
                   <p class="mb-2"><strong>Delivery Address:</strong></p>
                   <p class="mb-0">{{op.address.name}}<br>
                      {{op.address.locality}}<br>
                      {{op.address.city}}, {{op.address.state}} - {{op.address.zipcode}}</p>
-                </div>
+                </div> {% endcomment %}
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
-{% extends 'app/base.html' %} {% load static %} {% block title %}Checkout{% endblock title %} {% block main-content %}
+{% extends 'app/base.html' %} {% load static %} {% block title %}Checkout
+{% endblock title %} {% block main-content %}
 <div class="container">
   <div class="row mt-5">
     <div class="col-sm-6">
@@ -14,21 +15,27 @@
                 <h5 class="card-title mb-0">{{item.product.title}}</h5>
                 <span class="badge bg-primary">Qty: {{item.quantity}}</span>
               </div>
-              <p class="text-primary fw-bold mt-2 mb-0">Rs. {{item.total_cost}}</p>
+              <p class="text-primary fw-bold mt-2 mb-0">
+                Rs. {{item.total_cost}}
+              </p>
             </div>
           </div>
           {% endfor %}
           <div class="card bg-light">
             <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
                 <span>Subtotal</span>
                 <span class="fw-bold">Rs. {{amount}}</span>
               </div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
                 <span>Shipping</span>
                 <span>Rs. 70.00</span>
               </div>
-              <hr class="my-2">
+              <hr class="my-2" />
               <div class="d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Total Amount</span>
                 <span class="h5 text-primary mb-0">Rs. {{totalamount}}</span>
@@ -37,9 +44,14 @@
           </div>
           <div class="card mt-3">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2 text-muted">Terms and Conditions</h6>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Terms and Conditions
+              </h6>
               <p class="small text-muted mb-0">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?
+                By placing your order, you agree to our Terms and Conditions.
+                Please ensure that your shipping details are correct, as orders
+                once placed cannot be modified. In case of any issues, contact
+                our support within 24 hours of order confirmation.
               </p>
             </div>
           </div>
@@ -50,7 +62,8 @@
       <div class="card shadow-sm">
         <div class="card-body">
           <h4 class="card-title mb-4">
-            <i class="fas fa-map-marker-alt text-primary me-2"></i>Shipping Address
+            <i class="fas fa-map-marker-alt text-primary me-2"></i>Shipping
+            Address
           </h4>
           <form action="/paymentdone/">
             {% for ad in add %}
@@ -64,10 +77,14 @@
                     name="custid"
                     id="custadd{{forloop.counter}}"
                   />
-                  <label class="form-check-label" for="custadd{{forloop.counter}}">
+                  <label
+                    class="form-check-label"
+                    for="custadd{{forloop.counter}}"
+                  >
                     <h5 class="mb-1">{{ad.name}}</h5>
                     <p class="text-muted mb-0">
-                      {{ad.locality}}, {{ad.city}}, {{ad.state}} - {{ad.zipcode}}
+                      {{ad.locality}}, {{ad.city}}, {{ad.state}} -
+                      {{ad.zipcode}}
                     </p>
                   </label>
                 </div>

@@ -108,7 +108,7 @@
             >
               <div>
                 <strong>Total</strong>
-                <small class="text-muted">(including VAT)</small>
+                <small class="text-muted">(including GST)</small>
               </div>
               <span id="totalamount" class="h4 text-primary"
                 >Rs. {{totalamount}}</span
@@ -128,11 +128,12 @@
           <h5 class="card-title mb-3">
             <i class="fas fa-credit-card text-primary me-2"></i>We Accept
           </h5>
-          <img
-            src="{% static 'app/images/payment.png' %}"
-            alt="Payment Methods"
-            class="img-fluid"
-          />
+          <p class="mb-0">
+            <span class="badge bg-light text-dark me-2">Master Card</span>
+            <span class="badge bg-light text-dark me-2">VISA</span>
+            <span class="badge bg-light text-dark">PayPak</span>
+            <span class="badge bg-light text-dark">JazzCash</span>
+          </p>
         </div>
       </div>
     </div>
