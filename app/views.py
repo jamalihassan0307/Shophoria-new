@@ -386,7 +386,10 @@ def update_address(request, id):
 @login_required
 def delete_address(request, id):
     if request.method == 'POST':
-        pi = Customer.objects.get(pk=id)
-        pi.delete()
-        messages.success(request, 'Address deleted successfully!')
+        try:
+            pi = Customer.objects.get(pk=id, user=request.user)
+            pi.delete()
+            messages.success(request, 'Address deleted successfully!')
+        except Customer.DoesNotExist:
+            messages.error(request, 'Address not found or you do not have permission to delete it.')
     return redirect('address')
